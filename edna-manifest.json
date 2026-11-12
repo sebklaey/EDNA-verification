@@ -22,7 +22,7 @@
     "copyright": "Copyright (c) 2026 Sebastian Kläy (@sebklaey). All Rights Reserved.",
     "evaluation": "testing/evaluation of the open-source engine only — all product usage (MCP/API/SDK/PWA) is paid via credits or annual license",
     "commercial": "written license contract required for production, enterprise and resale",
-    "url": "https://github.com/sebklaey/EDNA-verification-verification/blob/main/LICENSE"
+    "url": "https://github.com/sebklaey/EDNA-verification/blob/main/LICENSE"
   },
   "privacy": {
     "rawBiometricsLeaveDevice": false,

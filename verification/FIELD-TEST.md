@@ -38,7 +38,7 @@ to sit down and interact. That is the point.
    the rest of the session.
 5. Finish. The report is generated **locally**. Review it.
 6. Submit (choose one):
-   - **GitHub issue** (preferred): <https://github.com/sebklaey/EDNA-verification-verification/issues/new?template=field_test.md> — attach the downloaded JSON
+   - **GitHub issue** (preferred): <https://github.com/sebklaey/EDNA-verification/issues/new?template=field_test.md> — attach the downloaded JSON
    - **Email**: sebklay@me.com with the JSON attached
    - Keep it for your own evaluation — no obligation
 

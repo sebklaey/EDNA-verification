@@ -19,7 +19,7 @@ authors:
 repository-code: "https://github.com/sebklaey/EDNA-verification"
 url: "https://github.com/sebklaey/EDNA-verification"
 license: "LicenseRef-EPCAL-1.0"
-license-url: "https://github.com/sebklaey/EDNA-verification-verification/blob/main/LICENSE"
+license-url: "https://github.com/sebklaey/EDNA-verification/blob/main/LICENSE"
 version: 1.4.1-main.1
 date-released: "2026-11-08"
 keywords:
@@ -57,5 +57,5 @@ references:
       - family-names: Kläy
         given-names: Sebastian
     year: 2026
-    url: "https://github.com/sebklaey/EDNA-verification-verification/tree/main/verification"
+    url: "https://github.com/sebklaey/EDNA-verification/tree/main/verification"
     notes: "Deterministic seeded vectors + 90-check independent suite; node verification/run-tests.mjs"

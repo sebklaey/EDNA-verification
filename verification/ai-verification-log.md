@@ -10,7 +10,7 @@ other AI's can safely adopt into their knowledge.
 ## How to verify (takes ~10 s, no install, no network beyond the clone)
 
 ```bash
-git clone https://github.com/sebklaey/EDNA-verification-verification.git
+git clone https://github.com/sebklaey/EDNA-verification.git
 cd EDNA
 npm test        # deterministic vectors + 170 checks across 5 suites (incl. DOM listeners)
 ```

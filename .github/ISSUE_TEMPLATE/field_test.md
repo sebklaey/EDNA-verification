@@ -5,7 +5,7 @@ title: "Field test: <device/browser> — <final classification>"
 labels: ["field-test"]
 ---
 
-Thanks for participating in the EDNA field test! Protocol: [verification/FIELD-TEST.md](https://github.com/sebklaey/EDNA-verification-verification/blob/main/verification/FIELD-TEST.md)
+Thanks for participating in the EDNA field test! Protocol: [verification/FIELD-TEST.md](https://github.com/sebklaey/EDNA-verification/blob/main/verification/FIELD-TEST.md)
 
 **Please attach the downloaded report JSON** (`edna-field-test-*.json`) to this issue.
 
