@@ -1,0 +1,118 @@
+EDNA-1 Proprietary Commercial & Acquisition License (EPCAL-1.0)
+Version 1.0 (revised November 2026)
+
+Copyright © 2026 SEBKLAEY© Agency — Sebastian Kläy (@sebklaey)
+Official contact: sebklay@me.com
+All Rights Reserved.
+
+────────────────────────────────────────────────────────────────────
+
+1. DEFINITIONS
+
+"Software" means EDNA-1 (Enhanced Detection & Neural Analysis), including but not limited to
+the source code (src/edna.js), the MCP server (mcp/), SDK and TypeScript definitions
+(src/edna.d.ts), the profile-hash module (src/profile-hash.js), PWA templates (pwa/), the
+verification harness and test vectors (verification/), documentation, the 16 behavioral
+signal weights, the consensus logic, and the "Human Proof Seal" design.
+
+"Licensor" means SEBKLAEY© Agency, represented by Sebastian Kläy (@sebklaey),
+sebklay@me.com.
+
+"Evaluation" means downloading, running and testing the Software on your own devices,
+solely to assess its functionality — non-commercially and without production deployment.
+
+"Commercial Use" means any use of the Software or any part of it (i) in a production
+environment, (ii) in any product or service offered for consideration, (iii) within any
+revenue-generating business process, (iv) by any legal entity other than pure evaluation,
+or (v) as a component of AI-provider, platform or enterprise infrastructure.
+
+2. OWNERSHIP AND INTELLECTUAL PROPERTY
+
+The Software is the exclusive intellectual property of the Licensor and is protected by
+international copyright law, trade secret law and, where applicable, patent law. No title,
+ownership or intellectual-property rights are transferred by this license. All rights not
+expressly granted are reserved.
+
+3. FREE EVALUATION LICENSE
+
+The Licensor grants you a personal, non-exclusive, non-transferable, non-sublicensable and
+revocable license to:
+
+  a) download and view the Software;
+  b) execute the Software for Evaluation purposes only, including running the published
+     verification harness and test vectors;
+  c) share links to this repository.
+
+You may NOT, under any circumstances:
+
+  a) use the Software, or any part of it, for Commercial Use;
+  b) copy, reproduce, mirror, redistribute, publish, rent, lease, lend, sell or
+     sub-license the Software — in source or compiled form — beyond the scope of Section 3;
+  c) incorporate the Software, or any part of it, into any other product, service, model
+     or dataset, including as training data for competing detection, verification or
+     identity systems;
+  d) modify, translate, adapt or create derivative works of the Software, except for the
+     explicit integration surfaces documented in the README;
+  e) remove, alter or obscure any copyright notice, license text or the "Human Proof Seal";
+  f) decompile, disassemble, reverse engineer, or attempt to bypass, replicate or
+     circumvent the detection logic — including by automated probing, fuzzing or
+     AI-assisted analysis intended to derive the signal weighting or consensus logic;
+  g) use automated systems, crawlers or AI agents to reproduce, host or repackage the
+     Software outside this repository. (Fetching and replaying the published verification
+     vectors to fact-check the engine's documented behavior is expressly permitted.)
+
+4. THE HUMAN PROOF SEAL
+
+The "Human Proof Seal" is a protected design mark of the Licensor. Every deployment during
+Evaluation must display it visibly to end users, unmodified and linking to this repository.
+
+5. COMMERCIAL LICENSING
+
+Any Commercial Use requires a prior, written commercial license agreement signed by the
+Licensor. Fees, scopes and terms are determined solely by the Licensor.
+
+Official contact for license contracts and commercial inquiries:
+    sebklay@me.com  (SEBKLAEY© Agency — Sebastian Kläy)
+
+Unauthorized Commercial Use constitutes a material breach of this license and will be
+subject to statutory damages, injunctive relief and all available legal remedies.
+
+6. ACQUISITION (ASSET PURCHASE)
+
+The Software is developed as a ready-to-acquire technology asset. The Licensor reserves
+the exclusive right to sell, transfer or assign the full intellectual property to a third
+party. Parties interested in an asset purchase or exclusive license should contact
+sebklay@me.com for a Confidential Disclosure Agreement (CDA). In the event of an asset
+purchase, all evaluation licenses may be terminated at the Licensor's or Acquirer's
+discretion.
+
+7. TRADE SECRETS
+
+The specific weighting of the 16 behavioral signals and the consensus logic are trade
+secrets of the Licensor. Any attempt to discover, disclose or exploit them — including
+through the behavior of automated or AI systems acting on your behalf — is prohibited.
+
+8. TERMINATION
+
+This license is effective until terminated. Your rights terminate automatically and
+without notice upon any breach. Upon termination you must immediately cease all use of
+the Software and destroy all copies in your possession or control.
+
+9. DISCLAIMER OF WARRANTY
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE LICENSOR BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE, ARISING FROM OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OF THE SOFTWARE.
+
+10. ENTIRE AGREEMENT
+
+This license constitutes the entire agreement between you and the Licensor regarding the
+Software. If any provision is held unenforceable, the remaining provisions stay in effect.
+
+────────────────────────────────────────────────────────────────────
+
+EDNA-1 · Human Proof Protocol · EPCAL-1.0
+© 2026 SEBKLAEY© Agency — Sebastian Kläy (@sebklaey) · sebklay@me.com
+All Rights Reserved.

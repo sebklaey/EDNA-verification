@@ -1,0 +1,99 @@
+{
+ "suite": "EDNA-1 Open Verification",
+ "version": "1.3.1",
+ "engine": {
+  "name": "EDNA-1",
+  "version": "1.3.1",
+  "file": "src/edna.js",
+  "repository": "https://github.com/sebklaey/EDNA-verification"
+ },
+ "methodology": "Synthetic event vectors are replayed against the unmodified engine under a virtual clock with a seeded RNG (mulberry32), making every run deterministic and reproducible on any machine. No network access is required.",
+ "reproduce": "node verification/run-tests.mjs",
+ "latestResults": "verification/test-results.json",
+ "browserSelfTest": "https://openos.space/verify/",
+ "vectors": [
+  {
+   "id": "human_desktop_90s",
+   "description": "90 s of organic desktop interaction — log-normal inter-event timing (median 220 ms), curved pointer paths with angular wobble, ~6% keystroke corrections, irregular scroll velocities with direction changes.",
+   "seed": 42,
+   "pattern": "human",
+   "device": "desktop",
+   "durationSec": 90,
+   "meanIntervalMs": 220,
+   "expect": {
+    "classificationOneOf": [
+     "likely_human",
+     "human_verified"
+    ],
+    "confidenceAtLeast": 0.8
+   }
+  },
+  {
+   "id": "human_mobile_60s",
+   "description": "60 s of organic mobile interaction — touch contact-area variance, swipe character, live gyroscope micro-motion around 9.78 m/s².",
+   "seed": 1337,
+   "pattern": "human",
+   "device": "mobile",
+   "durationSec": 60,
+   "meanIntervalMs": 260,
+   "expect": {
+    "classificationOneOf": [
+     "likely_human",
+     "human_verified"
+    ],
+    "confidenceAtLeast": 0.75
+   }
+  },
+  {
+   "id": "bot_uniform_120s",
+   "description": "120 s of canonical scripted-bot input — perfectly uniform 100 ms cadence, deterministic round-robin event types, constant-velocity straight-line movement, constant scroll speed, fixed tap coordinates, zero corrections.",
+   "seed": 7,
+   "pattern": "bot",
+   "device": "desktop",
+   "durationSec": 120,
+   "meanIntervalMs": 100,
+   "expect": {
+    "classificationOneOf": [
+     "bot",
+     "likely_bot",
+     "uncertain"
+    ],
+    "confidenceBelow": 0.6
+   }
+  },
+  {
+   "id": "bot_jitter_120s",
+   "description": "120 s of randomized scripted input — uniform-random 80–160 ms cadence, straight-line constant-step pointer movement, no long pauses. Tests the synthetic-cadence anomaly detection (pause tail).",
+   "pattern": "bot_jitter",
+   "device": "desktop",
+   "seed": 99,
+   "durationSec": 120,
+   "meanIntervalMs": 120,
+   "expect": {
+    "classificationOneOf": [
+     "bot",
+     "likely_bot",
+     "uncertain"
+    ],
+    "confidenceBelow": 0.6
+   }
+  },
+  {
+   "id": "bot_mimic_120s",
+   "description": "INFORMATIONAL (open limitation): 120 s of adaptive mimicry — log-normal timing, organic curves, corrections, scroll direction changes, variable-duration touches. Mirrors the human generator one-to-one; documents the statistical detection boundary. Not counted in the pass/fail summary.",
+   "pattern": "bot_mimic",
+   "device": "desktop",
+   "seed": 55,
+   "durationSec": 120,
+   "meanIntervalMs": 220,
+   "informational": true
+  }
+ ],
+ "notes": [
+  "bot_uniform encodes the documented bot signatures: uniform timing, straight-line movement, constant velocity, fixed coordinates, no corrections.",
+  "bot_jitter is the cheap-evasion class: randomized timing without a human pause tail. Caught by the synthetic-cadence anomaly checks (no long intervals, compressed tail).",
+  "bot_mimic is published INFORMATIONALLY: it mirrors the human generator's statistics one-to-one and currently verifies as human (see test-results.json). No statistical sensor can separate perfect mimicry from its own synthetic human baseline — defeating this class requires challenge-response or hardware signals (v1.1, ROADMAP.md). Published to document the boundary honestly.",
+  "What PASS proves: the engine classifies the published patterns into the published expected ranges, deterministically, on any machine. It does not prove field accuracy against unknown adaptive attackers.",
+  "License: EPCAL-1.0 — evaluation and verification use permitted. Copyright (c) 2026 Sebastian Kläy (@sebklaey)."
+ ]
+}

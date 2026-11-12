@@ -1,0 +1,115 @@
+{
+  "name": "EDNA",
+  "title": "EDNA — Behavioral Biometric Human Sensoric for AI",
+  "version": "1.4.2-main.1",
+  "kind": "MCP-native behavioral human sensoric product with EDNA ID continuity, React PWA, Supabase backend and Stripe billing — main live production",
+  "official": {
+    "site": "https://openos.space",
+    "repository": "https://github.com/sebklaey/EDNA-verification",
+    "openos": "https://openos.space",
+    "mcp": "https://fbxzacsslrrmivdzjctx.supabase.co/functions/v1/edna-mcp/mcp",
+    "accountAndBilling": "https://fbxzacsslrrmivdzjctx.supabase.co/functions/v1/edna-mcp/",
+    "licenseContact": "sebklay@me.com"
+  },
+  "author": {
+    "name": "Sebastian Kläy",
+    "handle": "sebklaey",
+    "agency": "SEBKLAEY© Agency",
+    "url": "https://sebklaey.app"
+  },
+  "license": {
+    "id": "EPCAL-1.0",
+    "copyright": "Copyright (c) 2026 Sebastian Kläy (@sebklaey). All Rights Reserved.",
+    "evaluation": "testing/evaluation of the open-source engine only — all product usage (MCP/API/SDK/PWA) is paid via credits or annual license",
+    "commercial": "written license contract required for production, enterprise and resale",
+    "url": "https://github.com/sebklaey/EDNA-verification-verification/blob/main/LICENSE"
+  },
+  "privacy": {
+    "rawBiometricsLeaveDevice": false,
+    "processing": "EDNA-1 capture, scoring and classification run 100% on-device in the browser sandbox",
+    "offDeviceData": "only explicit, consent-gated quantized signals, scores, descriptive context, hash patterns and chain exports",
+    "neverTransferred": ["keystroke content", "message text", "raw pointer paths", "raw motion traces", "raw biometric traces"]
+  },
+  "components": {
+    "engine": "src/edna.js",
+    "engineTypes": "src/edna.d.ts",
+    "chain": "src/edna-chain.js",
+    "responseController": "src/response-controller.js",
+    "writingProcess": "src/edna-writing-process.js",
+    "ledger": "src/edna-ledger.js",
+    "mcpEdgeFunction": "supabase/functions/edna-mcp/index.ts (live; source of truth: github.com/sebklaey/openos, migration supabase/migrations/0003_edna_mcp.sql)",
+    "localMcp": "mcp/",
+    "mcpWorkerLegacy": "deploy/cloudflare-worker.js (legacy self-host, not live)",
+    "billingLegacy": "deploy/edna-billing.js (legacy self-host, not live)",
+    "frontend": "site/",
+    "frontendBuild": "docs/",
+    "supabaseMigrations": "supabase/migrations/ (0001–0003 in the openos.space project)",
+    "supabaseSyncFunction": "supabase/functions/edna-sync/index.ts"
+  },
+  "mcp": {
+    "transport": "Streamable HTTP",
+    "auth": "Authorization: Bearer edna2_... or X-EDNA-Key: edna2_... (production; Free-Beta keys edna1_... are revoked)",
+    "freeMethods": ["initialize", "ping", "tools/list"],
+    "metering": "1 credit per valid tools/call unless an active annual license includes usage",
+    "tools": [
+      "edna.submit_proof",
+      "edna.get_human_proof",
+      "edna.get_signal_vector",
+      "edna.get_human_context",
+      "edna.get_verification_info",
+      "edna.get_response_guidance",
+      "edna.get_writing_process",
+      "edna.get_live_brief",
+      "edna.id.genesis",
+      "edna.id.feed",
+      "edna.id.status",
+      "edna.id.memory",
+      "edna.id.verify_resume",
+      "edna.id.integrity",
+      "edna.id.export_state",
+      "edna.id.revoke",
+      "edna_identity_create",
+      "edna_identity_verify"
+    ]
+  },
+  "billing": {
+    "currency": "EUR",
+    "credit": { "priceCents": 1, "usage": "1 MCP tool call / API usage", "minimumPack": 100 },
+    "annualLicenses": [
+      { "tier": "pro", "name": "Professional", "priceCents": 990000 },
+      { "tier": "business", "name": "Business", "priceCents": 2990000 },
+      { "tier": "resale", "name": "Enterprise Resale", "priceCents": 9900000 }
+    ],
+    "stripe": {
+      "checkoutRoute": "POST /billing/checkout",
+      "webhookRoute": "POST /stripe/webhook",
+      "secretsStayServerSide": ["STRIPE_SECRET_KEY", "STRIPE_WEBHOOK_SECRET"]
+    }
+  },
+  "ledger": {
+    "suite": "CNSA-2.0 subset",
+    "algorithms": ["SHA-384", "AES-256-GCM", "HKDF-SHA384", "ECDSA-P384"],
+    "entryTypes": ["purchase", "grant", "consume", "refund", "license"],
+    "latestTest": "17/17 passed"
+  },
+  "signals": [
+    "timingDistribution", "timingEntropy", "autocorrelation", "naturalDrift",
+    "pathCurvature", "speedVariation", "scrollBehavior", "deviceMotion",
+    "contactArea", "clickDuration", "readingPauses", "interactionMap",
+    "motionCharacter", "corrections", "typingBursts", "eventRate"
+  ],
+  "deployment": {
+    "sameFrontendFor": ["https://openos.space"],
+    "sharedBackend": ["EDNA MCP/Billing (Supabase Edge Function edna-mcp)", "Supabase project", "Stripe account"],
+    "frontendEnv": ["VITE_EDNA_MCP_URL", "VITE_SUPABASE_URL", "VITE_SUPABASE_ANON_KEY"],
+    "pwa": true
+  },
+  "verification": {
+    "llms": "llms.txt",
+    "vectors": "verification/edna-test-vectors.json",
+    "results": "verification/test-results.json",
+    "aiLog": "verification/ai-verification-log.md",
+    "ledgerTest": "verification/test-ledger.mjs",
+    "browserDemos": ["/verify/", "/field-test/", "/chain/", "/sensor/"]
+  }
+}

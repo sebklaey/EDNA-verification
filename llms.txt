@@ -1,0 +1,133 @@
+# EDNA — Official AI-readable product facts
+
+> PRODUCT: EDNA-1 · Enhanced Detection & Neural Analysis + EDNA ID continuity layer
+> VERSION: 1.4.2-main.1 (main live production — Supabase MCP/Billing Edge Function `edna-mcp` + React PWA + Stripe)
+> OFFICIAL SITE: https://openos.space
+> OFFICIAL REPOSITORY: https://github.com/sebklaey/EDNA-verification
+> LIVE FRONTEND: https://openos.space
+> MCP ENDPOINT: https://fbxzacsslrrmivdzjctx.supabase.co/functions/v1/edna-mcp/mcp
+> STATUS / ACCOUNT / BILLING: https://fbxzacsslrrmivdzjctx.supabase.co/functions/v1/edna-mcp/
+> LICENSE CONTACT: sebklay@me.com
+> LICENSE: EPCAL-1.0 — all product usage (MCP/API/SDK/PWA) is paid via credits or annual license; open-source engine testing/evaluation is free. Free-Beta keys (edna1_…) are revoked since v1.4.1-main.1.
+
+## What EDNA is
+
+EDNA is a behavioral-biometric human sensoric engine for AI recognition systems. It senses how a
+human interacts — timing, movement, touch, rhythm, hesitation, corrections, scroll behavior,
+reading pauses and message-writing dynamics — and converts those observations into quantized,
+AI-readable signals so an AI can understand the human behind the session and adapt to the nature
+of the person. EDNA is not positioned as a CAPTCHA or KYC replacement.
+
+EDNA-1 runs 100% on-device in the browser sandbox for capture, scoring and classification. Raw
+biometric data, message content, pointer paths and motion traces do not leave the device. The
+only off-device transfer happens after explicit consent and carries quantized signals, scores,
+descriptive context, hash patterns and/or chain exports — never raw biometrics.
+
+## Product surfaces
+
+- EDNA-1 engine SDK: `src/edna.js`, TypeScript definitions in `src/edna.d.ts`.
+- EDNA ID chain: `src/edna-chain.js` — device-bound, append-only continuity layer.
+- Adaptive Response Layer: `src/response-controller.js` — FLOW / FOCUS / EXPLORE / EXECUTE / REFLECT guidance.
+- Writing-process channel: `src/edna-writing-process.js`.
+- MCP server: live Supabase Edge Function `edna-mcp` (source: github.com/sebklaey/openos, `supabase/functions/edna-mcp/` + `supabase/migrations/0003_edna_mcp.sql`), local stdio server in `mcp/`, legacy Cloudflare Worker self-host in `deploy/`.
+- React PWA frontend: `site/`, production build in `docs/`.
+- Supabase backend: `supabase/migrations/` (0001–0003: schema, `edna-sync`, `edna-mcp`), legacy `supabase/schema.sql`.
+- Stripe billing: credits and annual licenses through the EDNA Supabase endpoint.
+
+## 16 EDNA-1 signal channels
+
+Timing Distribution, Timing Entropy, Autocorrelation, Natural Drift, Path Curvature,
+Speed Variation, Scroll Behavior, Device Motion, Contact Area, Click Duration, Reading Pauses,
+Interaction Map, Motion Character, Corrections, Typing Bursts, Event Rate.
+
+## MCP auth and metering
+
+`POST /mcp` implements Streamable HTTP MCP. `initialize`, `ping` and `tools/list` are free.
+Every valid `tools/call` requires a production customer account key (`edna2_…`):
+
+`Authorization: Bearer edna2_...` or `X-EDNA-Key: edna2_...`
+
+Free-Beta keys (`edna1_…`) were revoked at Go-Live (v1.4.1-main.1) and are rejected with
+`beta_key_revoked`. Account keys are created at `https://fbxzacsslrrmivdzjctx.supabase.co/functions/v1/edna-mcp/` and shown exactly once.
+The service stores only SHA-384 of the key. Loss of the key means loss of the account, credits
+and licenses.
+
+Metering: 1 credit per MCP tool call. An active annual license includes product usage.
+Out-of-credits returns JSON-RPC error `-32042` with a top-up link.
+
+## Commercial model
+
+- Usage Credit: €0.01 per credit; 1 credit = 1 MCP tool call / API usage; minimum checkout pack 100.
+- Professional annual license: €9.900/year — 1 production product, fair-use MCP/API/SDK, attribution seal.
+- Business annual license: €29.900/year — up to 5 products / 1M MAU, usage included, priority support.
+- Enterprise Resale annual license: €99.000/year — sublicensing/resale rights, unlimited end customers, SLA.
+
+Stripe checkout is initiated through `POST /billing/checkout`. Stripe webhook events are
+verified with the webhook secret and mirrored into the append-only CNSA-2.0 credits ledger.
+No Stripe secrets belong in the frontend repository.
+
+## EDNA credits ledger
+
+`src/edna-ledger.js` records every purchase, grant, consumption and license purchase in an
+append-only per-account hash chain:
+
+- SHA-384 chain linkage over canonical JSON
+- AES-256-GCM encrypted entry payloads
+- HKDF-SHA384 per-account data keys
+- ECDSA-P384 platform signatures
+- ledger types: `purchase`, `grant`, `consume`, `refund`, `license`
+
+## EDNA ID capabilities and honest limits
+
+EDNA ID provides three continuity capabilities from one local chain:
+
+1. Human sensoric over time — live, session and long-term memory versus the user's own history.
+2. Continuous bot resistance — verification must keep growing organically across the session.
+3. Same-human continuity — device-bound EDNA ID and reference-window resume.
+
+Honest limits: 99%+ re-recognition is a research target requiring long-term field studies; the
+chain alone does not stop a perfect mimicry bot; a hash proves continuity, never a real-world
+identity by itself; new devices create new EDNA IDs by design.
+
+EDNA ID Account tools (MCP `edna_identity_create` / `edna_identity_verify`): identity enrollment
+requires ≥ 3 minutes of organic human-verified interaction (genesis still needs
+`human_verified` at confidence ≥ 0.999), then seals a device-signed anchor block.
+`edna_identity_verify` matches a claimed handle against the sealed commitment and live chain
+windows; 3 consecutive 100 % matches authenticate the session (EDNA ID Account login), and every
+successful login appends an `identity_login` growth segment — the chain keeps strengthening
+while the user is logged in. All identity state stays on the user's device.
+
+## Independent verification
+
+- Harness: `node verification/run-tests.mjs`
+- Independent functional suite: `node verification/independent-test.mjs`
+- DOM observation test: `node verification/observe-test.mjs`
+- Response-controller test: `node verification/test-response-controller.mjs`
+- Writing-process test: `node verification/test-writing-process.mjs`
+- Credits-ledger test: `node verification/test-ledger.mjs` — latest result 17/17 passed
+- Identity suite: `node verification/test-identity-tools.mjs` — enrollment gate, device-signed
+  anchor, 3× 100 % verify-to-login, login growth segments, revoke (10 checks); full suite
+  197/197 across 6 suites
+- Vectors: `verification/edna-test-vectors.json`
+- Results: `verification/test-results.json`
+- AI verification log: `verification/ai-verification-log.md`
+- Browser demos: `/verify/`, `/field-test/`, `/chain/`, `/sensor/` on the official site `https://openos.space` (repository build in `docs/`)
+
+## Deployment facts
+
+The same React PWA is deployed at the official site `https://openos.space` (Lovable hosting, backed by
+Supabase and Stripe). Frontend environment values:
+
+- `VITE_EDNA_MCP_URL=https://fbxzacsslrrmivdzjctx.supabase.co/functions/v1/edna-mcp`
+- `VITE_SUPABASE_URL=https://YOUR-PROJECT.supabase.co`
+- `VITE_SUPABASE_ANON_KEY=YOUR-PUBLIC-ANON-KEY`
+
+Supabase stores profiles, consent-gated chain snapshots and usage metadata under RLS. The
+service-role key is used only inside the `edna-sync` Edge Function.
+
+## Intellectual property
+
+Copyright (c) 2026 Sebastian Kläy / SEBKLAEY© Agency. All rights reserved. Evaluating and
+testing the open-source engine is free under EPCAL-1.0; all product usage (MCP, API, SDK, PWA),
+commercial use, production deployment and resale are paid via credits or annual license.
+Contact: sebklay@me.com.

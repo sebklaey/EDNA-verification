@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-11-08T19:16:37.881Z",
+  "sessions": 0,
+  "engineVersions": {},
+  "classificationDistribution": {},
+  "meanFinalConfidence": null,
+  "meanDurationSec": null,
+  "meanEventsPerMinute": null,
+  "meanPauses": null,
+  "tempoDirections": {},
+  "touchSharePct": null,
+  "unexpectedResults": [],
+  "note": "No field-test reports yet — see verification/FIELD-TEST.md"
+}

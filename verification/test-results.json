@@ -1,0 +1,194 @@
+{
+  "suite": "EDNA-1 Open Verification",
+  "engine": {
+    "name": "EDNA-1",
+    "version": "1.4.2-main.1",
+    "file": "src/edna.js"
+  },
+  "methodology": "Synthetic event vectors replayed against the unmodified engine under a virtual clock with a seeded RNG (mulberry32). Deterministic and reproducible on any machine: node verification/run-tests.mjs",
+  "environment": {
+    "runtime": "node v24.22.1",
+    "platform": "darwin",
+    "date": "2026-11-12T16:39:55.663Z"
+  },
+  "vectors": [
+    {
+      "id": "human_desktop_90s",
+      "description": "90 s of organic desktop interaction — log-normal timing, curved pointer paths, typos with corrections, irregular scrolling with direction changes.",
+      "seed": 42,
+      "pattern": "human",
+      "device": "desktop",
+      "durationSec": 90,
+      "expected": {
+        "classificationOneOf": [
+          "likely_human",
+          "human_verified"
+        ],
+        "confidenceAtLeast": 0.8
+      },
+      "observed": {
+        "confidence": 0.999,
+        "classification": "human_verified",
+        "eventCount": 362,
+        "signalCount": 11,
+        "signals": {
+          "timingDistribution": 0.848,
+          "timingEntropy": 1,
+          "autocorrelation": 0.35,
+          "naturalDrift": 0.638,
+          "pathCurvature": 0.895,
+          "speedVariation": 0.95,
+          "scrollBehavior": 1,
+          "clickDuration": 0.733,
+          "interactionMap": 0.887,
+          "corrections": 0.726,
+          "eventRate": 0.8
+        }
+      },
+      "pass": true
+    },
+    {
+      "id": "human_mobile_60s",
+      "description": "60 s of organic mobile interaction — touch contact-area variance, swipe character, live gyroscope micro-motion.",
+      "seed": 1337,
+      "pattern": "human",
+      "device": "mobile",
+      "durationSec": 60,
+      "expected": {
+        "classificationOneOf": [
+          "likely_human",
+          "human_verified"
+        ],
+        "confidenceAtLeast": 0.75
+      },
+      "observed": {
+        "confidence": 0.995,
+        "classification": "human_verified",
+        "eventCount": 204,
+        "signalCount": 13,
+        "signals": {
+          "timingDistribution": 0.862,
+          "timingEntropy": 1,
+          "autocorrelation": 0.4,
+          "naturalDrift": 0.707,
+          "pathCurvature": 0.896,
+          "speedVariation": 0.95,
+          "scrollBehavior": 1,
+          "deviceMotion": 0.95,
+          "contactArea": 0.774,
+          "clickDuration": 0.742,
+          "interactionMap": 0.896,
+          "corrections": 0.721,
+          "eventRate": 0.8
+        }
+      },
+      "pass": true
+    },
+    {
+      "id": "bot_uniform_120s",
+      "description": "120 s of scripted input — uniform 100 ms intervals, straight-line pointer movement, constant scroll speed, zero corrections.",
+      "seed": 7,
+      "pattern": "bot",
+      "device": "desktop",
+      "durationSec": 120,
+      "expected": {
+        "classificationOneOf": [
+          "bot",
+          "likely_bot",
+          "uncertain"
+        ],
+        "confidenceBelow": 0.6
+      },
+      "observed": {
+        "confidence": 0.179,
+        "classification": "bot",
+        "eventCount": 1398,
+        "signalCount": 11,
+        "signals": {
+          "timingDistribution": 0.1,
+          "timingEntropy": 0.15,
+          "autocorrelation": 0.35,
+          "naturalDrift": 0.35,
+          "pathCurvature": 0.3,
+          "speedVariation": 0.8,
+          "scrollBehavior": 0.15,
+          "clickDuration": 0.15,
+          "interactionMap": 0.15,
+          "corrections": 0.4,
+          "eventRate": 0.8
+        }
+      },
+      "pass": true
+    },
+    {
+      "id": "bot_jitter_120s",
+      "description": "120 s of randomized scripted input — uniform-random 80–160 ms cadence, straight-line constant-step movement, no long pauses. Cheap-evasion class.",
+      "seed": 99,
+      "pattern": "bot_jitter",
+      "device": "desktop",
+      "durationSec": 120,
+      "expected": {
+        "classificationOneOf": [
+          "bot",
+          "likely_bot",
+          "uncertain"
+        ],
+        "confidenceBelow": 0.6
+      },
+      "observed": {
+        "confidence": 0.339,
+        "classification": "likely_bot",
+        "eventCount": 1352,
+        "signalCount": 10,
+        "signals": {
+          "timingDistribution": 0.508,
+          "timingEntropy": 1,
+          "autocorrelation": 0.35,
+          "naturalDrift": 0.617,
+          "pathCurvature": 0.3,
+          "speedVariation": 0.95,
+          "scrollBehavior": 0.7,
+          "motionCharacter": 0.5,
+          "corrections": 0.4,
+          "eventRate": 0.8
+        }
+      },
+      "pass": true
+    },
+    {
+      "id": "bot_mimic_120s",
+      "description": "INFORMATIONAL (open limitation): 120 s of adaptive mimicry — log-normal timing, organic curves, corrections, scroll direction changes, variable-duration touches. Mirrors the human generator one-to-one; documents the statistical detection boundary.",
+      "seed": 55,
+      "pattern": "bot_mimic",
+      "device": "desktop",
+      "durationSec": 120,
+      "informational": true,
+      "observed": {
+        "confidence": 0.999,
+        "classification": "human_verified",
+        "eventCount": 478,
+        "signalCount": 11,
+        "signals": {
+          "timingDistribution": 0.86,
+          "timingEntropy": 1,
+          "autocorrelation": 0.4,
+          "naturalDrift": 0.35,
+          "pathCurvature": 0.902,
+          "speedVariation": 0.95,
+          "scrollBehavior": 1,
+          "clickDuration": 0.72,
+          "interactionMap": 0.947,
+          "corrections": 0.73,
+          "eventRate": 0.8
+        }
+      },
+      "pass": null
+    }
+  ],
+  "summary": {
+    "total": 5,
+    "informational": 1,
+    "passed": 4,
+    "allPassed": true
+  }
+}

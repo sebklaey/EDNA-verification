@@ -1,0 +1,61 @@
+cff-version: 1.2.0
+message: "If you use or discuss EDNA-1, please cite both the software and the Open Research Europe article (DOI to be added upon publication)."
+title: "EDNA-1: Behavioral Biometric Human Sensoric Engine for AI"
+abstract: >-
+  EDNA-1 (Enhanced Detection & Neural Analysis) is a client-side
+  behavioral-biometric sensoric engine for AI recognition systems. It senses
+  16 channels of human behavior entirely on the user's device and turns them
+  into an AI-readable signal vector and Human Confidence Score, so an AI can
+  understand the human behind the session — presence, attention, hesitation,
+  engagement — and adapt its behavior accordingly. No raw biometric data
+  leaves the device; exports carry only non-personalized, salted cryptographic
+  hash patterns.
+type: software
+authors:
+  - family-names: Kläy
+    given-names: Sebastian
+    email: sebklay@me.com
+    website: https://sebklaey.app
+repository-code: "https://github.com/sebklaey/EDNA-verification"
+url: "https://github.com/sebklaey/EDNA-verification"
+license: "LicenseRef-EPCAL-1.0"
+license-url: "https://github.com/sebklaey/EDNA-verification-verification/blob/main/LICENSE"
+version: 1.4.1-main.1
+date-released: "2026-11-08"
+keywords:
+  - behavioral biometrics
+  - artificial intelligence
+  - human-computer interaction
+  - privacy-preserving computing
+  - Model Context Protocol
+  - biometric sensing
+  - software verification
+  - on-device machine learning
+identifiers:
+  - type: url
+    value: "https://github.com/sebklaey/EDNA-verification"
+    description: "Canonical repository and official EDNA page"
+  - type: other
+    value: "Open Research Europe submission #1858"
+    description: >-
+      Software Tool Article "EDNA: a behavioral-biometric human sensoric
+      engine for AI recognition systems -100% on-device, MCP-native,
+      independently verifiable", submitted 2026-11-08. DOI is assigned by
+      Open Research Europe upon publication and will be added here.
+references:
+  - type: article
+    title: "EDNA: a behavioral-biometric human sensoric engine for AI recognition systems -100% on-device, MCP-native, independently verifiable"
+    authors:
+      - family-names: Kläy
+        given-names: Sebastian
+    year: 2026
+    journal: "Open Research Europe (submission #1858, under editorial review)"
+    notes: "DOI assigned upon publication."
+  - type: software
+    title: "EDNA-1 Open Verification: deterministic test vectors, independent functional checks and field-test results"
+    authors:
+      - family-names: Kläy
+        given-names: Sebastian
+    year: 2026
+    url: "https://github.com/sebklaey/EDNA-verification-verification/tree/main/verification"
+    notes: "Deterministic seeded vectors + 90-check independent suite; node verification/run-tests.mjs"
