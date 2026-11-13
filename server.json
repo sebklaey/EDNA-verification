@@ -1,0 +1,26 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
+  "name": "space.openos/edna",
+  "title": "EDNA — On-Device Human Sensing for AI",
+  "description": "On-device human sensing for AI: EDNA ID continuity and live human context via MCP.",
+  "version": "1.4.2",
+  "websiteUrl": "https://openos.space",
+  "repository": {
+    "url": "https://github.com/sebklaey/EDNA-verification",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://openos.space/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer <EDNA account key> — create a free account at https://openos.space/app#account",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
